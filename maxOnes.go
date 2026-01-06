@@ -10,7 +10,6 @@ for right:=0;right<len(arr);right++{
 
 	if arr[right]==0{
 		zeroCount++
-	}
 
 	if zeroCount>k{
 		if arr[left]==0{
@@ -18,7 +17,9 @@ for right:=0;right<len(arr);right++{
 		}
     left++
 
-	}
+	}	
+}
+
 
 
 	if maxValue<right-left+1{

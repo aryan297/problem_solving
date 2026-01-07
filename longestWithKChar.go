@@ -18,6 +18,7 @@ func longestChar(s string , k int){
 			hashMap[s[left]]--
 
 			if hashMap[s[left]]==0{
+				
 
 				delete(hashMap,s[left])
 			}

@@ -18,6 +18,8 @@ func maxSub(arr []int , k int){
 
     cursum=max(cursum,sum)
 
+    
+
 	}
 
 fmt.Println(cursum)

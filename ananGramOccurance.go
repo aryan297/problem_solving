@@ -28,6 +28,8 @@ func anagramValue(txt , pat string){
 		    frqMap[txt[j]] = val - 1
 		     if frqMap[txt[j]]==0{
 		     	count--
+
+		     	
 		     }
 
 		}
@@ -41,16 +43,6 @@ func anagramValue(txt , pat string){
 					ans++;
 				}
 
-				if val,ok := frqMap[txt[i]];ok{
-
-					frqMap[txt[i]]=val+1;
-
-					if 	frqMap[txt[i]]==1{
-						count++
-					}
-
-
-				}
 
 			i++;
 

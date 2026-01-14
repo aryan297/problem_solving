@@ -7,7 +7,6 @@ func subArraySum(arr []int , k int){
 
 	count:=0
 	sum:=0
-
 	hashMap :=map[int]int{0:1}
 
 	for i:=0;i<len(arr);i++{
@@ -15,8 +14,6 @@ func subArraySum(arr []int , k int){
 		sum +=arr[i];
 
 		if hashMap[sum-k]>0{
-			fmt.Println(sum, k, "k")
-			fmt.Println(hashMap[sum-k])
 
 			count +=hashMap[sum-k]
 		}

@@ -29,7 +29,7 @@ func anagramValue(txt , pat string){
 		     if frqMap[txt[j]]==0{
 		     	count--
 
-		     	
+		     
 		     }
 
 		}

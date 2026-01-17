@@ -1,48 +1,133 @@
-
-
 package main
 
 import "fmt"
 
-
-type Node struct{
-	Val string 
-	Left *Node
-	Right *Node
+type TreeNode struct{
+	Val int
+	Left *TreeNode
+	Right *TreeNode
 }
 
 
-func Inorder(root *Node) {
+func CreateNode() *TreeNode{
+	tree := &TreeNode{Val:1}
+
+	tree.Left=&TreeNode{Val:2}
+	tree.Right=&TreeNode{Val:3}
+	tree.Left.Right = &TreeNode{Val:5}
+	tree.Left.Left = &TreeNode{Val:5}
+
+	return tree
+}
+
+
+func printAllNode(root *TreeNode){
+
 	if root==nil{
 		return
 	}
-	Inorder(root.Left)
+
+
+	//if root.Left==nil && root.Right==nil{
+		//fmt.Println(root.Val)  // if need to print leaf node this logic will work
+	//}
 	fmt.Println(root.Val)
-	Inorder(root.Right)
+
+	printAllNode(root.Left)
+	printAllNode(root.Right)
+
 }
 
 
-func LevelOrder(root *Node) [][]string{
-
-	if root == nil{
-		return [][]string{}
+func CountNodes(root *TreeNode) int{
+	if root==nil{
+		return 0
 	}
 
-	var result [][]string
-	queue := []*Node{root} 
+	return 1+CountNodes(root.Left)+CountNodes(root.Right)
+}
 
 
+func maxDepth(root *TreeNode) int{
+
+	if root==nil{
+		return 0
+	}
+
+	leftDepth:=maxDepth(root.Left)
+	rightDepth := maxDepth(root.Right)
+
+	if leftDepth >rightDepth {
+		return leftDepth +1
+	}
+
+	return rightDepth +1
 
 }
 
-func main(){
-   root:=&Node{Val:"1"}
-   root.Left= &Node{Val:"2"}
-   root.Right=&Node{Val:"3"}
-   fmt.Println(root.Val)
-    fmt.Println(root.Left.Val)
-    fmt.Println(root.Right.Val)
+func minDepth(root *TreeNode) int{
+	if root == nil{
+		return 0
+	}
 
-   Inorder(root)
+	if root.Left==nil{
+		return 1+minDepth(root.Right)
+	}
+
+    if root.Right==nil{
+
+    	return 1+minDepth(root.Left)
+
+    }
+
+    leftDepth:=maxDepth(root.Left)
+     rightDepth:=maxDepth(root.Right)
+
+     if leftDepth >rightDepth{
+     	return rightDepth+1
+     
+      }
+
+      return leftDepth+1
+}
+
+func countLeaves(root  *TreeNode) int{ 
+
+	if root == nil{
+		return 0
+	}
+
+	if root.Left== nil && root.Right ==nil{
+		return 1
+	}
+
+	return countLeaves(root.Left) +countLeaves(root.Right)
+
+}
+
+
+
+
+func main() {
+ tree:= CreateNode()
+
+ printAllNode(tree)
+
+ value := CountNodes(tree)
+
+ depth := maxDepth(tree)
+
+ minDepths := minDepth(tree)
+
+ leaf :=countLeaves(tree)
+
+ fmt.Println(depth, "max depth")
+
+ fmt.Println(value ,"count")
+
+ fmt.Println(leaf,"leaf")
+
+ fmt.Println(minDepths , "min depth")
+
 
 }

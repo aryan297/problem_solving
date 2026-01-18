@@ -106,6 +106,35 @@ func countLeaves(root  *TreeNode) int{
 }
 
 
+func MaxDiameter(tree *TreeNode) int{
+	maxDiameter :=0
+
+	var height func(*TreeNode) int
+
+	height= func(node *TreeNode) int{
+
+		if node == nil{
+			return 0
+		}
+		left :=height(node.Left)
+		right :=height(node.Right)
+
+		if left+right > maxDiameter{
+			maxDiameter=left+right
+		}
+
+		if left > right{
+
+			return left+1
+		}
+		return right+1
+	}
+	height(tree)
+  return maxDiameter
+
+}
+
+
 
 
 func main() {
@@ -126,6 +155,7 @@ func main() {
  fmt.Println(value ,"count")
 
  fmt.Println(leaf,"leaf")
+ 	fmt.Println("Diameter:", MaxDiameter(tree))
 
  fmt.Println(minDepths , "min depth")
 

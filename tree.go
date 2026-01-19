@@ -124,13 +124,53 @@ func MaxDiameter(tree *TreeNode) int{
 		}
 
 		if left > right{
-
 			return left+1
 		}
 		return right+1
 	}
 	height(tree)
   return maxDiameter
+
+}
+
+func levelOrderTraversal(tree *TreeNode) {
+
+	queue :=[]*TreeNode{tree}
+
+	res :=[][]int{}
+
+
+	for len(queue)>0{
+
+		size:=len(queue)
+
+		level:=[]int{}
+
+
+		for i:=0;i<size;i++{
+
+			node :=queue[0]
+			queue = queue[1:]
+
+			level = append(level,node.Val)
+
+			if node.Left!=nil{
+				queue=append(queue,node.Left)
+			}
+
+			if node.Right!=nil{
+				queue=append(queue,node.Right)
+			}
+		}
+
+		res =append(res,level)
+
+
+
+	}
+
+	fmt.Println(res,"result")
+
 
 }
 
@@ -158,6 +198,8 @@ func main() {
  	fmt.Println("Diameter:", MaxDiameter(tree))
 
  fmt.Println(minDepths , "min depth")
+
+ levelOrderTraversal(tree)
 
 
 }

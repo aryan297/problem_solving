@@ -65,6 +65,25 @@ func maxDepth(root *TreeNode) int{
 
 }
 
+func maxHeight(root *TreeNode) int{
+
+	if root ==nil{
+		return -1
+	}
+
+	left :=maxHeight(root.Left)
+	right := maxHeight(root.Right)
+
+	if left > right{
+		return left+1
+	}
+
+	return right+1
+
+
+
+}
+
 func minDepth(root *TreeNode) int{
 	if root == nil{
 		return 0
@@ -104,6 +123,9 @@ func countLeaves(root  *TreeNode) int{
 	return countLeaves(root.Left) +countLeaves(root.Right)
 
 }
+
+
+
 
 
 func MaxDiameter(tree *TreeNode) int{
@@ -176,6 +198,35 @@ func levelOrderTraversal(tree *TreeNode) {
 
 
 
+func sumOfNode(root *TreeNode) int{
+
+	if root == nil{
+		return 0
+	}
+
+
+	left :=sumOfNode(root.Left)
+	right:=sumOfNode(root.Right)
+
+	return left+right+root.Val
+}
+
+
+func sumOfLeaf(root *TreeNode) int{
+
+	if root==nil{
+		return 0
+	}
+
+	if root.Left==nil && root.Right==nil{
+		return root.Val
+	}
+
+	return sumOfLeaf(root.Left) + sumOfLeaf(root.Right)
+}
+
+
+
 
 func main() {
  tree:= CreateNode()
@@ -190,6 +241,12 @@ func main() {
 
  leaf :=countLeaves(tree)
 
+ sum := sumOfNode(tree)
+ sumLeaf := sumOfLeaf(tree)
+
+ height :=maxHeight(tree)
+ fmt.Println(height, "max height")
+
  fmt.Println(depth, "max depth")
 
  fmt.Println(value ,"count")
@@ -198,6 +255,9 @@ func main() {
  	fmt.Println("Diameter:", MaxDiameter(tree))
 
  fmt.Println(minDepths , "min depth")
+
+ fmt.Println(sum , "sum of node")
+  fmt.Println(sumLeaf , "sum of leaf")
 
  levelOrderTraversal(tree)
 

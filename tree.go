@@ -8,17 +8,7 @@ type TreeNode struct{
 	Right *TreeNode
 }
 
-
-func CreateNode() *TreeNode{
-	tree := &TreeNode{Val:1}
-
-	tree.Left=&TreeNode{Val:2}
-	tree.Right=&TreeNode{Val:3}
-	tree.Left.Right = &TreeNode{Val:5}
-	tree.Left.Left = &TreeNode{Val:5}
-
-	return tree
-}
+ 
 
 
 func printAllNode(root *TreeNode){
@@ -157,6 +147,10 @@ func MaxDiameter(tree *TreeNode) int{
 
 func levelOrderTraversal(tree *TreeNode) {
 
+	if root==nil{
+		return 
+	}
+
 	queue :=[]*TreeNode{tree}
 
 	res :=[][]int{}
@@ -228,6 +222,41 @@ func sumOfLeaf(root *TreeNode) int{
 
 
 
+func isCompleteBinaryTree(root *TreeNode) bool{
+
+	if root ==nil{
+		return true
+	}
+
+	queue :=[]*TreeNode{root}
+	seeNull:=false
+
+	for len(queue)>0{
+		node :=queue[0]
+		queue =queue[1:]
+
+
+		if node == nil{
+			seeNull=true
+		} else{
+
+			if seeNull{
+				return false
+			}
+
+			queue=append(queue,node.Left)
+			queue=append(queue,node.Right)
+		}
+
+	}
+
+
+return true
+
+}
+
+
+
 func main() {
  tree:= CreateNode()
 
@@ -242,6 +271,10 @@ func main() {
  leaf :=countLeaves(tree)
 
  sum := sumOfNode(tree)
+
+ isCompleteBinaryTrees := isCompleteBinaryTree(tree)
+
+
  sumLeaf := sumOfLeaf(tree)
 
  height :=maxHeight(tree)
@@ -258,6 +291,7 @@ func main() {
 
  fmt.Println(sum , "sum of node")
   fmt.Println(sumLeaf , "sum of leaf")
+  fmt.Println(isCompleteBinaryTrees , " is complete binary tree")
 
  levelOrderTraversal(tree)
 

@@ -256,6 +256,62 @@ return true
 }
 
 
+func maxSum(root *TreeNode) int{
+	maxSum := -1<<31
+
+	var sum func(*TreeNode) int
+
+	sum = func(node *TreeNode) int{
+
+
+		if node==nil{
+			return 0
+		}
+
+		left :=max(0,sum(node.Left))
+		right := max(0,sum(node.Right))
+
+		maxSum=max(maxSum , node.Val+left+right)
+
+	    return node.Val + max(left, right)
+
+	}
+
+	sum(root)
+
+	return maxSum
+}
+
+
+func max(a,b) int{
+	if a>b{
+		return a
+	}
+	return b
+}
+
+
+func invertTree( root *TreeNode)*TreeNode{
+	if root==nil{
+		return
+	}
+
+	left , right := invertTree(root.Right) , invertTree(root.Left)
+
+	return root
+
+}
+
+
+func isBalanced(root *TreeNode) *TreeNode{
+	var check func(*TreeNode) int
+
+	check = func(node *TreeNode) int{
+
+	}
+
+
+}
 
 func main() {
  tree:= CreateNode()

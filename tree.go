@@ -8,6 +8,17 @@ type TreeNode struct{
 	Right *TreeNode
 }
 
+
+func CreateNode() *TreeNode{
+	root := &TreeNode{Val:1}
+	root.Left=&TreeNode{Val:1}
+	root.Right=&TreeNode{Val:2}
+	root.Left.Left=&TreeNode{Val:3}
+	root.Left.Right=&TreeNode{Val:4}
+
+	return root 
+}
+
  
 
 
@@ -70,8 +81,6 @@ func maxHeight(root *TreeNode) int{
 
 	return right+1
 
-
-
 }
 
 func minDepth(root *TreeNode) int{
@@ -89,7 +98,7 @@ func minDepth(root *TreeNode) int{
 
     }
 
-    leftDepth:=maxDepth(root.Left)
+     leftDepth:=maxDepth(root.Left)
      rightDepth:=maxDepth(root.Right)
 
      if leftDepth >rightDepth{
@@ -147,7 +156,7 @@ func MaxDiameter(tree *TreeNode) int{
 
 func levelOrderTraversal(tree *TreeNode) {
 
-	if root==nil{
+	if tree==nil{
 		return 
 	}
 
@@ -283,35 +292,62 @@ func maxSum(root *TreeNode) int{
 }
 
 
-func max(a,b) int{
+
+
+func max(a,b int) int{
 	if a>b{
 		return a
 	}
 	return b
 }
 
-
 func invertTree( root *TreeNode)*TreeNode{
-	if root==nil{
-		return
+	if root ==nil{
+		return nil
 	}
 
-	left , right := invertTree(root.Right) , invertTree(root.Left)
-
+	root.Left , root.Right = root.Right, root.Left
+   
+    invertTree(root.Left)
+    invertTree(root.Right)
 	return root
 
 }
 
 
-func isBalanced(root *TreeNode) *TreeNode{
-	var check func(*TreeNode) int
+func longestUnivaluePath(root *TreeNode) int{
+	longest :=0
+	var dfs func(*TreeNode) int
 
-	check = func(node *TreeNode) int{
+	dfs=func(node *TreeNode) int{
+		if node ==nil{
+			return 0
+		}
+
+		leftPath :=dfs(node.Left)
+		rightPath :=dfs(node.Right)
+
+		left,right:=0,0
+
+		if node.Left!=nil && node.Val==node.Left.Val{
+			left=leftPath+1
+		}
+
+		if node.Right!=nil && node.Val==node.Right.Val{
+			right=rightPath+1
+		}
+
+      longest = max(longest , left+right)
+
+     return max(left, right)
 
 	}
 
+	dfs(root)
 
+	return longest;
 }
+
 
 func main() {
  tree:= CreateNode()
@@ -328,7 +364,11 @@ func main() {
 
  sum := sumOfNode(tree)
 
+ univalue := longestUnivaluePath(tree)
+
  isCompleteBinaryTrees := isCompleteBinaryTree(tree)
+
+ invertTrees := invertTree(tree)
 
 
  sumLeaf := sumOfLeaf(tree)
@@ -348,6 +388,9 @@ func main() {
  fmt.Println(sum , "sum of node")
   fmt.Println(sumLeaf , "sum of leaf")
   fmt.Println(isCompleteBinaryTrees , " is complete binary tree")
+
+  fmt.Println(univalue ,"longest univalue sum")
+  printAllNode(invertTrees)
 
  levelOrderTraversal(tree)
 

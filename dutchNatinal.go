@@ -20,10 +20,7 @@ func dutch(arr []int){
 		case 2:
 			arr[mid], arr[high] =arr[high],arr[mid]
 			high--
-
 		}
-			
-		
 		
 	}
 

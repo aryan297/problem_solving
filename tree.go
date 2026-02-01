@@ -28,7 +28,6 @@ func printAllNode(root *TreeNode){
 		return
 	}
 
-
 	//if root.Left==nil && root.Right==nil{
 		//fmt.Println(root.Val)  // if need to print leaf node this logic will work
 	//}
@@ -121,6 +120,11 @@ func countLeaves(root  *TreeNode) int{
 
 	return countLeaves(root.Left) +countLeaves(root.Right)
 
+}
+
+
+func isValidBst(root *TreeNode){
+	
 }
 
 
@@ -315,6 +319,39 @@ func invertTree( root *TreeNode)*TreeNode{
 }
 
 
+func pathSum(root *TreeNode , target int) int{
+
+	hashMap := map[int]int{0:1}
+	count :=0
+
+	var dfs func(*TreeNode , int)
+
+	dfs = func(node *TreeNode, curSum int){
+		if node==nil {
+			return 
+		}
+
+		curSum+=node.Val
+
+		if freq, ok := hashMap[curSum-target];ok{
+			fmt.Println(freq)
+			count+=freq
+		}
+
+		hashMap[curSum]++;
+
+		dfs(node.Left, curSum)
+        dfs(node.Right, curSum)
+        hashMap[curSum]--;
+
+	}
+
+	dfs(root,0)
+	return count
+
+}
+
+
 func longestUnivaluePath(root *TreeNode) int{
 	longest :=0
 	var dfs func(*TreeNode) int
@@ -371,9 +408,12 @@ func main() {
  invertTrees := invertTree(tree)
 
 
+
  sumLeaf := sumOfLeaf(tree)
 
  height :=maxHeight(tree)
+
+ p:=pathSum(tree,7)
  fmt.Println(height, "max height")
 
  fmt.Println(depth, "max depth")
@@ -390,9 +430,13 @@ func main() {
   fmt.Println(isCompleteBinaryTrees , " is complete binary tree")
 
   fmt.Println(univalue ,"longest univalue sum")
+
+  fmt.Println(p, "path sum")
   printAllNode(invertTrees)
 
  levelOrderTraversal(tree)
+
+
 
 
 }

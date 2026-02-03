@@ -38,6 +38,8 @@ func bfs( start int , graph map[int][]int){
 				visited[neighbour]=true
 
 				queue=append(queue,neighbour)
+
+				
 			}
 		}
 

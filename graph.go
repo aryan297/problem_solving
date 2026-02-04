@@ -8,10 +8,13 @@ func dfs(node int , graph map[int][]int , visited map[int]bool){
 	if visited[node]{
 		return
 	}
+	 count:=0
 
 	visited[node]=true
 
 	fmt.Println(node)
+
+	//fmt.Println(count)
 
 	for _,neighbour := range graph[node]{
 		dfs(neighbour,graph,visited)
@@ -39,7 +42,7 @@ func bfs( start int , graph map[int][]int){
 
 				queue=append(queue,neighbour)
 
-				
+
 			}
 		}
 

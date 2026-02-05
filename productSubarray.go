@@ -12,6 +12,7 @@ func productArray(arr []int){
 
 	}
 	right:=1
+	
 for i:=n-1;i>=0;i--{
 	ans[i]*=right;
 	right*=arr[i]

@@ -23,6 +23,7 @@ func leftPart(arr []int ,target int) int {
 	}
 
 	return ans
+	
 }
 
 

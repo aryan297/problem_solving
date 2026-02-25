@@ -48,9 +48,6 @@ func threeSum(arr []int , target int){
 				right--
 			}
 
-
-
-
 		}
 
 

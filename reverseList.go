@@ -38,6 +38,31 @@ func Printlist(h *LinkedList){
 
 }
 
+func hasCycle(h *LinkedList) bool{
+
+	if h==nil{
+      return false
+	}
+
+	slow:=h
+	fast:=h
+
+	for fast !=nil && fast.Next!=nil{
+
+		slow=slow.Next
+		fast=fast.Next.Next
+	}
+
+
+	if slow==fast{
+		return true
+	}
+
+	return false
+
+
+}
+
 
 
 
@@ -50,6 +75,10 @@ func main(){
 	node.Next.Next.Next= &LinkedList{3 , nil}
 
 	Printlist(node)
+
+	c :=hasCycle(node)
+
+	fmt.Println(c,"cycle)
 
 	p := reverseList(node)
 		Printlist(p)

@@ -44,6 +44,7 @@ func hasCycle(h *LinkedList) bool{
       return false
 	}
 
+
 	slow:=h
 	fast:=h
 
@@ -62,8 +63,6 @@ func hasCycle(h *LinkedList) bool{
 
 
 }
-
-
 
 
 

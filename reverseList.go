@@ -8,7 +8,6 @@ type LinkedList struct{
 	Next *LinkedList
 }
 
-
 func reverseList(h *LinkedList) *LinkedList{
 
 	var prev *LinkedList
@@ -19,7 +18,6 @@ func reverseList(h *LinkedList) *LinkedList{
 		cur.Next=prev
 		prev=cur
 		cur=next
-
 	}
 
 	return prev
@@ -47,7 +45,7 @@ func hasCycle(h *LinkedList) bool{
 
 	slow:=h
 	fast:=h
-
+ 
 	for fast !=nil && fast.Next!=nil{
 
 		slow=slow.Next

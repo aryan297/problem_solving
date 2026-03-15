@@ -12,6 +12,7 @@ func subStr( s string){
 	for right:=0;right<len(s);right++{
 
 
+
 		for hashMap[s[right]]{
 
 			delete(hashMap,s[left])

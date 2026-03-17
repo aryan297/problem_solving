@@ -17,7 +17,6 @@ func minSum(arr []int , target int){
 		sum +=arr[right]
 
 		for sum>=target{
-			
 
 			if right-left+1<minlen{
 				minlen=right-left+1

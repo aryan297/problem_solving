@@ -5,7 +5,6 @@ import "fmt"
 func sorted(arr []int){
 left :=0
 right :=len(arr)-1
-
 pos:=len(arr)-1
 res :=make([]int,len(arr))
 
@@ -22,7 +21,6 @@ for left <right{
 	}
 
 	pos--
-
 
 }
 

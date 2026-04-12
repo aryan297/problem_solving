@@ -25,6 +25,7 @@ func longest(arr []int , k int){
 		}
 
 		if right-left+1>maxCount{
+			
 			maxCount=right-left+1
 		}
 

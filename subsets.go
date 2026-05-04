@@ -17,6 +17,7 @@ func subset(arr []int) [][]int{
 			path =append(path , arr[i])
 			dfs(i+1)
 			path =path[:len(path)-1]
+			
 		}
 
 	}

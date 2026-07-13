@@ -10,27 +10,29 @@ func abs(a  int) int{
    return -a
 
 	 }
-
 	 return a
 }
 
 
-
-
 func dispair(arr []int){
+
+	res :=[]int{}
 
 	for i:=0;i<len(arr);i++{
 
 		index:=abs(arr[i])-1
-
-
 		if arr[index]>0{
 			arr[index]= -arr[index]
 		}
 
-
 	}
-  fmt.Println(arr)
+	for i:=0;i<len(arr);i++{
+
+		if arr[i]>0{
+			res=append(res,i+1)
+		}
+	}
+  fmt.Println(res)
 
 }
 
